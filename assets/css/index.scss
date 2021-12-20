@@ -1,0 +1,76 @@
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+@keyframes intro-fade {
+	from {
+		filter: opacity(0);
+		transform: scale(1.1);
+	}
+	to {
+	}
+}
+
+body {
+	background-color: var(--another-color);
+	color: white;
+	overflow: hidden;
+}
+
+header {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--another-color);
+
+	animation: intro-fade 2s;
+
+	#logo {
+		height: 500px;
+		display: block;
+		// transition: all .5s;
+
+		// &:hover {
+			// transition: all .5s;
+			// transform: scale(1.1);
+		// }
+	}
+
+	font-family: 'Share Tech Mono', monospace;
+
+	h1.terminal {
+		font-size: 80px;
+		padding: 32px;
+		margin: 0;
+		z-index: 2;
+
+		&::before {
+			content: '';
+		}
+	}
+
+	h2 {
+		color: rgb(112, 172, 168);
+		font-size: 36px;
+		transition: transform 1s, filter 1.5s;
+
+		&.subtitle-hidden {
+			visibility: hidden;
+			transform: translateY(-80px);
+			filter: opacity(0);
+		}
+	}
+}
+
+main {
+	padding: 64px;
+}

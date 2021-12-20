@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+    --primary-color: #1d8654;
+    --secondary-color: #1a363d;
+    --another-color: #174a47;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.terminal {
+	background-color: var(--secondary-color);
+	padding: 16px;
+	border-radius: 16px;
+	color: white;
+
+	&::before {
+		content: '$';
+		color: var(--primary-color);
+	}
+}
+
+.regex {
+    &::before {
+        content: '/';
+        color: rgb(136, 216, 112);
+    }
+    &::after {
+        content: '/';
+        color: rgb(136, 216, 112);
+    }
+}

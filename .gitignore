@@ -1,4 +1,5 @@
 public/
+resources/
 themes/terminal/
 **/node_modules/
 .hugo_build.lock

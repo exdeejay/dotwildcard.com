@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-			{{ block "title" . }}
-				{{ .Site.Title }}
-			{{ end }}
+	<head>
+		<meta charset="utf-8">
+		<title>
+			{{- block "title" . }}
+				{{- .Site.Title -}}
+			{{ end -}}
 		</title>
-		<link rel="stylesheet" href="/css/normalize.css">
-		<link rel="stylesheet" href="/css/style.css">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<meta property="og:title" content="">
+		<meta property="og:description" content="">
+		<meta property="og:image" content="">
+		<meta name="twitter:card" content="">
+		<meta name="twitter:site" content="">
+		<meta name="twitter:title" content="">
+		<meta name="twitter:description" content="">
+		<meta name="twitter:image" content="">
+
+		<link rel="icon" href="/img/favicon.png" sizes="any">
+		<link rel="icon" href="/img/logo_round.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="/img/favicon.png">
+
+		{{ $normalize := resources.Get "css/normalize.css" | minify }}
+		<link rel="stylesheet" type="text/css" href="{{ $normalize.Permalink }}">
+		{{ $style := resources.Get "css/style.scss" | toCSS | minify }}
+		<link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
 		{{ block "styles" . }}
 		{{ end }}
-    </head>
-    <body>
-        {{ block "header" . }}
+	</head>
+	<body>
+		{{ block "header" . }}
 			{{ partial "header.html" . }}
 		{{ end }}
 		{{ block "main" . }} {{ end }}
 		{{ block "footer" . }}
 			{{ partial "footer.html" . }}
 		{{ end }}
-    </body>
+	</body>
 </html>
