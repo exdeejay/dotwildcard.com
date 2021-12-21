@@ -5,21 +5,22 @@
 
 {{ define "header" }}
 	<header>
-		<img id="logo" src="/img/logo_round.svg" alt="">
-		<h1 class="terminal">
-			<span class="regex"></span>
-		</h1>
-		<h2 class="subtitle-hidden">
-			// literally anything goes
-		</h2>
+		<div>
+			<img id="logo" src="/img/logo_round.svg" alt="">
+			<h1 class="terminal">
+				<span class="regex"></span>
+			</h1>
+			<h2 class="subtitle-hidden">
+				<span class="comment"> literally anything goes</span>
+			</h2>
+		</div>
 	</header>
 {{ end }}
 
 {{ define "main" }}
 	<main>
-		
+		hi
 	</main>
-
 	{{ $js := resources.Get "js/index.js" | minify }}
 	<script src="{{ $js.Permalink }}"></script>
 {{ end }}

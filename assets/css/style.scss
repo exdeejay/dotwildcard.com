@@ -1,17 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 :root {
+    
+    font-size: calc(1em + 1vw);
+}
+
+html {
+    box-sizing: border-box;
     --primary-color: #1d8654;
     --secondary-color: #1a363d;
     --another-color: #174a47;
 }
 
-html {
-    box-sizing: border-box;
+body {
+    background-color: var(--secondary-color);
+    color: white;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--secondary-color);
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--secondary-color);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primary-color);
+        border-radius: 20px;
+    }
 }
 
 *, *:before, *:after {
     box-sizing: inherit;
+}
+
+img {
+    max-width: 100%;
 }
 
 .terminal {
@@ -34,5 +58,11 @@ html {
     &::after {
         content: '/';
         color: rgb(136, 216, 112);
+    }
+}
+
+.comment {
+    &::before {
+        content: '//';
     }
 }
