@@ -45,9 +45,9 @@ document.body.onload = async () => {
 		await animateBackspace(regex, 0.25);
 		await sleep(0.5);
 		await animateType(regex, 'dotWildcard', 0.1);
-		if (getClasses(subtitle).includes('subtitle-hidden')) {
-			setClasses(subtitle, getClasses(subtitle).filter(i => i != 'subtitle-hidden'));
-		}
+		// if (getClasses(subtitle).includes('subtitle-hidden')) {
+		// 	setClasses(subtitle, getClasses(subtitle).filter(i => i != 'subtitle-hidden'));
+		// }
 		await sleep(10);
 		await animateBackspace(regex, 0.1);
 		await sleep(1);
