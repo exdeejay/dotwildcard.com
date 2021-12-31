@@ -15,8 +15,8 @@
 {{ end }}
 
 {{ define "main" }}
-	<main>
-		hi
+	<main style="display: none">
+		
 	</main>
 	{{ $js := resources.Get "js/index.js" | minify }}
 	<script src="{{ $js.Permalink }}"></script>
