@@ -1,7 +1,28 @@
-header {    
-    margin: 4rem 0;
+header div {
+    margin: 0;
+    height: 95vh;
 
     h1.terminal {
-        padding: 32px;
+        padding: 32px 0;
+        font-size: 2.5rem;
+    }
+
+    @media screen and (min-width: 992px) {
+        margin: 4rem 0;
+        height: 70vh;
+    }
+
+    nav {
+        margin: 32px 0;
+
+        @media screen and (max-width: 600px) {
+            ul {
+                justify-content: center;
+
+                li {
+                    margin: 12px 30px;
+                }
+            }
+        }
     }
 }

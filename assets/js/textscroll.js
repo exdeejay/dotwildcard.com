@@ -47,7 +47,7 @@ document.body.onload = async () => {
 		text = regex.getAttribute('content');
 		regex.removeAttribute('content');
 
-		await sleep(2);
+		await sleep(0.5);
 		await animateType(regex, altText, 0.5);
 		await sleep(1);
 		await animateBackspace(regex, 0.25);

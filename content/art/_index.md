@@ -2,4 +2,6 @@
 title: "art"
 ---
 
-this is art
+- 2D
+- 3D
+- design

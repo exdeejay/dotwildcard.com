@@ -1,3 +1,7 @@
+{{ define "title" }}
+dotwildcard
+{{ end }}
+
 {{ define "styles" }}
 	{{ $style := resources.Get "css/index.scss" | toCSS | minify }}
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
@@ -11,11 +15,10 @@
 			</h1>
 			<nav>
 				<ul>
-					<li><a href="#">home</a></li>
 					<li><a href="/about">about</a></li>
 					<li><a href="/posts">posts</a></li>
-					<div class="break"></div>
 					<li><a href="/code">code</a></li>
+					<div class="break"></div>
 					<li><a href="/art">art</a></li>
 					<li><a href="/contact">contact</a></li>
 				</ul>

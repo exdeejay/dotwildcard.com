@@ -2,4 +2,6 @@
 title: "code"
 ---
 
-code?
+- code
+- games
+- hacking
