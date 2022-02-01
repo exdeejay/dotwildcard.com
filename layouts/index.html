@@ -1,7 +1,13 @@
-{{ define "title" }} dotwildcard {{ end }} {{ define "styles" }} {{ $style := resources.Get "css/index.scss" | toCSS |
-minify }}
+{{ define "title" }}
+dotwildcard
+{{ end }}
+
+{{ define "styles" }}
+{{ $style := resources.Get "css/index.scss" | toCSS | minify }}
 <link rel="stylesheet" href="{{ $style.Permalink }}" />
-{{ end }} {{ define "header" }}
+{{ end }}
+
+{{ define "header" }}
 <header>
     <div class="flex-sep">
         <nav>
