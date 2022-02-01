@@ -20,7 +20,10 @@ async function sleep(secs) {
     });
 }
 
-async function animateType(elem, str, secsPerLetter) {
+async function animateType(elem, str, secsPerLetter, color) {
+	if (color !== undefined && color !== null) {
+		elem.style.color = color;
+	}
     for (let c of str) {
         elem.innerText += c;
         await sleep(secsPerLetter);
@@ -33,6 +36,7 @@ async function animateBackspace(elem, secsPerLetter) {
 		elem.innerText = elem.innerText.slice(0, -1);
 		await sleep(secsPerLetter);
 	}
+	elem.removeAttribute('style')
 }
 
 document.body.onload = async () => {
@@ -41,6 +45,10 @@ document.body.onload = async () => {
 	let text = null;
 	let altText = regex.getAttribute('alt');
 	regex.removeAttribute('alt');
+	let color = null;
+	if (regex.getAttribute('color') != 'no') {
+		color = 'var(--color7)';
+	}
 	if (regex.textContent != '') {
 		text = regex.textContent;
 	} else {
@@ -48,7 +56,7 @@ document.body.onload = async () => {
 		regex.removeAttribute('content');
 
 		await sleep(0.5);
-		await animateType(regex, altText, 0.5);
+		await animateType(regex, altText, 0.5, color);
 		await sleep(1);
 		await animateBackspace(regex, 0.25);
 		await sleep(0.5);
@@ -60,7 +68,7 @@ document.body.onload = async () => {
 		await animateBackspace(regex, 0.1);
 
 		await sleep(1);
-		await animateType(regex, altText, 0.5);
+		await animateType(regex, altText, 0.5, color);
 		await sleep(5);
 		await animateBackspace(regex, 0.25);
 

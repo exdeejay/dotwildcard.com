@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
 :root {
     font-size: calc(1em + 1vw);
@@ -15,9 +16,11 @@ html {
     --color4: #151b22;
     --color5: #1b272e;
     --color6: #382535;
+    --color7: #92d8b9;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     min-height: 100%;
     height: 100%;
@@ -26,8 +29,8 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    font-family: 'Share Tech Mono', monospace;
-    
+    font-family: 'Noto Sans', sans-serif;
+
     background-color: var(--color4);
     color: white;
 
@@ -45,7 +48,9 @@ body {
     }
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
     box-sizing: inherit;
 }
 
@@ -62,15 +67,16 @@ a {
 }
 
 .terminal {
-	background-color: var(--color2);
-	padding: 16px;
-	border-radius: 16px;
-	color: white;
+    background-color: var(--color2);
+    padding: 16px;
+    border-radius: 16px;
+    color: white;
+    font-family: 'Share Tech Mono', monospace;
 
-	&::before {
-		content: '$';
-		color: var(--color1);
-	}
+    &::before {
+        content: '$';
+        color: var(--color1);
+    }
 }
 
 .regex {
@@ -90,71 +96,51 @@ a {
     }
 }
 
+.flex-break {
+    display: none;
+    @media screen and (max-width: 600px) {
+        display: block;
+        flex-basis: 100%;
+        height: 0;
+    }
+}
+
+.flex-sep {
+    flex-grow: 1;
+}
+
 ul {
     list-style-type: '- ';
 }
 
-header {
-    background-color: var(--color4);
+h1.terminal {
+    width: 100%;
+    border-radius: 0;
+    text-align: center;
+    font-size: 1.5rem;
 
-    & > div {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        h1.terminal {
-            width: 100%;
-            border-radius: 0;
-            text-align: center;
-            font-size: 1.5rem;
-            margin: 0;
-            margin-bottom: 1rem;
-            z-index: 2;
-
-            &::before {
-                content: '';
-            }
-        }
-
-        h2 {
-            color: rgb(112, 172, 168);
-            font-size: 1rem;
-            transition: transform 1s, filter 1.5s;
-
-            &.subtitle-hidden {
-                visibility: hidden;
-                transform: translateY(-2rem);
-                filter: opacity(0);
-            }
-        }
+    &::before {
+        content: '';
     }
+}
 
+header {
+    font-family: 'Share Tech Mono', monospace;
     nav {
         ul {
             text-align: center;
             padding: 0;
             display: flex;
             flex-wrap: wrap;
+
             justify-content: center;
-            .break {
-                display: none;
-            }
-            
             @media screen and (max-width: 600px) {
                 justify-content: space-around;
-                .break {
-                    display: block;
-                    flex-basis: 100%;
-                    height: 0;
-                    margin: 8px;
-                }
             }
-            
+
             li {
                 display: inline-block;
-                margin: 0 1rem;
+                margin: 0.25rem 1rem;
             }
         }
     }
@@ -162,20 +148,53 @@ header {
 
 main {
     background-color: var(--color5);
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 4px;
     height: 100%;
+    font-size: 16px;
+    line-height: 1.75;
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: 800px) {
         margin: 0 auto;
-        width: 992px;
+        width: 800px;
     }
 }
 
 footer {
+    font-family: 'Share Tech Mono', monospace;
     margin: 0;
     margin-top: 1rem;
     padding: 2rem;
     font-size: 0.75rem;
     text-align: center;
+}
+
+input.discord {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    color: rgb(220, 221, 222);
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: bold;
+    background-color: #303339;
+    border: 1px solid #222428;
+}
+
+input.discord:focus {
+    outline: 1px solid rgb(0, 175, 244);
+}
+
+.discord-copy {
+    transform: translateX(-200%);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: unset;
+    border: 2px solid grey;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.discord-copy:active {
+    filter: brightness(0.8);
 }

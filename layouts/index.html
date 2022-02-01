@@ -1,36 +1,25 @@
-{{ define "title" }}
-dotwildcard
-{{ end }}
-
-{{ define "styles" }}
-	{{ $style := resources.Get "css/index.scss" | toCSS | minify }}
-	<link rel="stylesheet" href="{{ $style.Permalink }}">
-{{ end }}
-
-{{ define "header" }}
-	<header>
-		<div>
-			<h1 class="terminal">
-				<span class="regex" content="{{ .Title }}" alt=".*"></span>
-			</h1>
-			<nav>
-				<ul>
-					<li><a href="/about">about</a></li>
-					<li><a href="/posts">posts</a></li>
-					<li><a href="/code">code</a></li>
-					<div class="break"></div>
-					<li><a href="/art">art</a></li>
-					<li><a href="/contact">contact</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-{{ end }}
-
-{{ define "main" }}
-	<main>
-		{{ .Content }}
-	</main>
-	{{ $js := resources.Get "js/textscroll.js" | minify }}
-	<script src="{{ $js.Permalink }}"></script>
+{{ define "title" }} dotwildcard {{ end }} {{ define "styles" }} {{ $style :=
+resources.Get "css/index.scss" | toCSS | minify }}
+<link rel="stylesheet" href="{{ $style.Permalink }}" />
+{{ end }} {{ define "header" }}
+<header>
+    <nav>
+        <ul>
+            <li><a href="/about">about</a></li>
+            <li><a href="/posts">posts</a></li>
+            <li><a href="/code">code</a></li>
+            <div class="flex-break"></div>
+            <li><a href="/art">art</a></li>
+            <li><a href="/contact">contact</a></li>
+        </ul>
+    </nav>
+	<div class="flex-sep"></div>
+    <h1 class="terminal">
+        <span class="regex" content="{{ .Title }}" alt=".*"></span>
+    </h1>
+	<div class="flex-sep"></div>
+</header>
+{{ end }} {{ define "main" }} {{ $js := resources.Get "js/textscroll.js" |
+minify }}
+<script src="{{ $js.Permalink }}"></script>
 {{ end }}

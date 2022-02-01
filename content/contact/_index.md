@@ -2,4 +2,4 @@
 title: "contact"
 ---
 
-contact me lol
+{{< discord >}}
