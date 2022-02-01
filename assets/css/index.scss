@@ -25,11 +25,19 @@ header {
     }
 
     .flex-sep:nth-of-type(1) {
-        flex-grow: 0.25;
+        flex-grow: 0.8;
     }
 
     h1.terminal {
-        padding: 32px 0;
-        font-size: 2.5rem;
+        padding: 2rem 0;
+        font-size: calc(2rem + 2vw);
+        border-width: 2rem 0;
+        border-color: var(--color5);
+        border-style: solid;
+        box-shadow: 0 0 0 1rem #141920;
     }
+}
+
+footer {
+    background-color: unset;
 }

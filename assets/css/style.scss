@@ -82,11 +82,11 @@ a {
 .regex {
     &::before {
         content: '/';
-        color: rgb(136, 216, 112);
+        color: #88d870;
     }
     &::after {
         content: '/';
-        color: rgb(136, 216, 112);
+        color: #88d870;
     }
 }
 
@@ -149,52 +149,34 @@ header {
 main {
     background-color: var(--color5);
     padding: 1rem;
-    border-radius: 4px;
     height: 100%;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.75;
 
+    p {
+        margin: 2rem 0;
+
+        &:first-child, &:last-child {
+            margin: 0;
+        }
+    }
+
+
     @media screen and (min-width: 800px) {
-        margin: 0 auto;
         width: 800px;
+        margin: 0 auto;
     }
 }
 
 footer {
     font-family: 'Share Tech Mono', monospace;
-    margin: 0;
-    margin-top: 1rem;
     padding: 2rem;
     font-size: 0.75rem;
     text-align: center;
-}
+    background-color: var(--color5);
 
-input.discord {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    color: rgb(220, 221, 222);
-    font-family: 'Share Tech Mono', monospace;
-    font-weight: bold;
-    background-color: #303339;
-    border: 1px solid #222428;
-}
-
-input.discord:focus {
-    outline: 1px solid rgb(0, 175, 244);
-}
-
-.discord-copy {
-    transform: translateX(-200%);
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: unset;
-    border: 2px solid grey;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.discord-copy:active {
-    filter: brightness(0.8);
+    @media screen and (min-width: 800px) {
+        width: 800px;
+        margin: 0 auto;
+    }
 }
