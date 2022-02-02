@@ -26,6 +26,9 @@ dotwildcard
     </h1>
     <div class="flex-sep"></div>
 </header>
-{{ end }} {{ define "main" }} {{ $js := resources.Get "js/textscroll.js" | minify }}
-<script src="{{ $js.Permalink }}"></script>
+{{ end }}
+
+{{ define "main" }}
+    {{ $js := resources.Get "js/textscroll.js" | minify }}
+    <script src="{{ $js.Permalink }}"></script>
 {{ end }}
