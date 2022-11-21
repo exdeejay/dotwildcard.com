@@ -126,6 +126,7 @@ h1.terminal {
 
 header {
     font-family: 'Share Tech Mono', monospace;
+    text-transform: lowercase;
     nav {
         ul {
             text-align: center;
@@ -180,6 +181,6 @@ footer {
     }
 }
 
-main + footer {
+main + .flex-sep + footer {
     background-color: var(--color5);
 }
