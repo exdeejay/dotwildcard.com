@@ -173,10 +173,13 @@ footer {
     padding: 2rem;
     font-size: 0.75rem;
     text-align: center;
-    background-color: var(--color5);
 
     @media screen and (min-width: 800px) {
         width: 800px;
         margin: 0 auto;
     }
+}
+
+main + footer {
+    background-color: var(--color5);
 }

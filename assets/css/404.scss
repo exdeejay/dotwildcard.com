@@ -1,0 +1,45 @@
+.glitch-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+// glitch effect stolen from https://codepen.io/mondo-iwanow/pen/xoxvgE
+.glitch {
+    position: relative;
+    margin: 0 auto;
+    font-size: 6rem;
+
+    &::before,
+    &::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        background: #151b22;
+        // clip-path: inset(100% 100% 100% 100%);
+    }
+
+    &::before {
+        left: 7px;
+        text-shadow: 1px 0 green;
+        animation: glitch-effect 7s infinite linear alternate-reverse;
+    }
+
+    &::after {
+        left: 3px;
+        text-shadow: -1px 0 red;
+        animation: glitch-effect 5s infinite linear alternate-reverse;
+    }
+}
+
+@keyframes glitch-effect {
+    @for $i from 0 through 20 {
+        #{percentage($i*(1/20))} {
+            clip-path: inset(random()*3+rem 0 random()*3+rem 0);
+        }
+    }
+}

@@ -1,7 +1,6 @@
 baseURL = 'https://dotwildcard.com/'
 languageCode = 'en-us'
 title = 'dotwildcard'
-#disableHugoGeneratorInject = true
 
 [minify]
 minifyOutput = true

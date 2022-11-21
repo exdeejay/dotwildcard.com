@@ -32,7 +32,7 @@
 	</head>
 	<body>
 		{{ block "header" . }}
-			{{ partial "header.html" . }}
+			{{ partial "header.html" .Title }}
 		{{ end }}
 		{{ block "main" . }} {{ end }}
 		{{ block "footer" . }}

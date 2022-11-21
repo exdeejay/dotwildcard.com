@@ -13,22 +13,18 @@ dotwildcard
         <nav>
             <ul>
                 <li><a href="/about">about</a></li>
-                {{/*  <li><a href="/posts">posts</a></li>
-                <li><a href="/code">code</a></li>
-                <div class="flex-break"></div>
-                <li><a href="/art">art</a></li>  */}}
                 <li><a href="/contact">contact</a></li>
             </ul>
         </nav>
     </div>
-    <h1 class="terminal">
-        <span class="regex" content="{{ .Title }}" alt=".*"></span>
-    </h1>
-    <div class="flex-sep"></div>
 </header>
 {{ end }}
 
 {{ define "main" }}
-    {{ $js := resources.Get "js/textscroll.js" | minify }}
-    <script src="{{ $js.Permalink }}"></script>
+<h1 class="terminal">
+    <span class="regex" content="{{ .Title }}" alt=".*"></span>
+</h1>
+<div class="flex-sep"></div>
+{{ $js := resources.Get "js/textscroll.js" | minify }}
+<script src="{{ $js.Permalink }}"></script>
 {{ end }}

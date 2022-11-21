@@ -1,0 +1,20 @@
+{{ define "title" }}
+404
+{{ end }}
+
+{{ define "header" }}
+{{ partial "header.html" "" }}
+{{ end }}
+
+{{ define "styles" }}
+{{ $style := resources.Get "css/404.scss" | toCSS | minify }}
+<link rel="stylesheet" href="{{ $style.Permalink }}" />
+{{ end }}
+
+{{ define "main" }}
+
+<div class="glitch-container">
+    <div class="glitch" data-text="404">404</div>
+</div>
+
+{{ end }}

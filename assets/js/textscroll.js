@@ -40,7 +40,7 @@ async function animateBackspace(elem, secsPerLetter) {
 }
 
 document.body.onload = async () => {
-    let regex = document.querySelector('header h1 span.regex');
+    let regex = document.querySelector('h1 span.regex');
 
 	let text = null;
 	let altText = regex.getAttribute('alt');
