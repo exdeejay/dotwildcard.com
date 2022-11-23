@@ -1,7 +1,5 @@
 main {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
     font-size: 1rem;
 
@@ -10,84 +8,25 @@ main {
         li {
             position: relative;
             display: block;
-            margin: 2rem auto;
+            margin: 2rem 0;
             width: 60%;
     
             display: flex;
             align-items: center;
-            a {
+            justify-content: start;
+            
+            a, span {
                 margin-left: 1rem;
+            }
+            span::before {
+                content: '@';
+                visibility: hidden;
             }
     
             img {
-                float: left;
                 display: inline;
                 width: 2rem;
             }
-        }
-    }
-    
-    .discord {
-        input {
-            width: 100%;
-            margin-left: 1rem;
-            padding: 0.6rem;
-            padding-right: 2rem;
-    
-            border-radius: 8px;
-            color: #329e97;
-            background-color: #223131;
-            border: 1px solid #1a2525;
-    
-            font-size: 1rem;
-            font-family: 'Share Tech Mono', monospace;
-            font-weight: bold;
-
-            &:focus {
-                outline: 1px solid rgb(0, 175, 244);
-            }
-        }
-    
-        .discord-copy {
-            display: block;
-            position: absolute;
-            padding: 0;
-            top: 50%;
-            right: 0%;
-            transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-    
-            &:active {
-                filter: brightness(0.8);
-            }
-    
-            &[selected=''] .success {
-                stroke-dashoffset: 0;
-            }
-        }
-    
-        svg {
-            transform: rotate(-90deg);
-            width: 24px;
-            height: 24px;
-            position: absolute;
-        }
-    
-        .success {
-            transition: stroke-dashoffset ease-out 1s;
-            stroke: #88d870;
-            stroke-width: 4;
-            stroke-dasharray: 9 * 6.28;
-            stroke-dashoffset: 9 * 6.28;
-            fill: none;
-        }
-    
-        .blank {
-            stroke: grey;
-            stroke-width: 4;
-            fill: none;
         }
     }
 }
