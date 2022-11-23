@@ -2,6 +2,8 @@
 title: "about"
 ---
 
-Hey! I'm Jack, but I'm known on the internet as DJ
+welcome to my website!
 
+...
 
+it's still pretty barren right now, but check back later for updates pls ty
