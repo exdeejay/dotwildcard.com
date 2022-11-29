@@ -1,5 +1,0 @@
----
-title: 'gallery'
----
-
-hi there!

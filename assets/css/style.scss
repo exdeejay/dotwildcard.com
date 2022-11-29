@@ -118,35 +118,8 @@ header {
             }
 
             @media screen and (max-width: 600px) {
-                flex-wrap: wrap;
                 text-align: center;
                 justify-content: space-around;
-
-                li {
-                    width: 33%;
-                    margin: 0.25rem 0;
-                    order: 1;
-                }
-
-                &::before {
-                    width: 33%;
-                    content: ' ';
-                    order: 2;
-                }
-
-                :nth-child(1) ~ * {
-                    order: 3;
-                }
-
-                &::after {
-                    content: ' ';
-                    width: 100%;
-                    order: 4;
-                }
-
-                :nth-child(2) ~ * {
-                    order: 5;
-                }
             }
         }
     }
