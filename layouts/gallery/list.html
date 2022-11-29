@@ -1,0 +1,19 @@
+{{ define "styles" }}
+<link rel="stylesheet" href="{{ (resources.Get "css/gallery.scss" | toCSS | minify).Permalink }}" />
+{{ end }}
+
+{{ define "main" }}
+<div class="content">
+	{{ .Content }}
+	<ul class="list">
+    {{ $page := . }}
+	{{ range os.ReadDir "assets/gallery" }}
+        {{ with resources.Get (printf "gallery/%s" .Name) }}
+        <li>
+            <img src="{{ .RelPermalink }}">
+        </li>
+        {{ end }}
+	{{ end }}
+	</ul>
+</div>
+{{ end }}

@@ -110,22 +110,49 @@ header {
     nav {
         ul {
             display: flex;
-            // flex-wrap: wrap;
-
             justify-content: center;
-            @media screen and (max-width: 600px) {
-                justify-content: space-around;
-            }
 
             li {
                 display: inline-block;
                 margin: 0.25rem 1rem;
             }
+
+            @media screen and (max-width: 600px) {
+                flex-wrap: wrap;
+                text-align: center;
+                justify-content: space-around;
+
+                li {
+                    width: 33%;
+                    margin: 0.25rem 0;
+                    order: 1;
+                }
+
+                &::before {
+                    width: 33%;
+                    content: ' ';
+                    order: 2;
+                }
+
+                :nth-child(1) ~ * {
+                    order: 3;
+                }
+
+                &::after {
+                    content: ' ';
+                    width: 100%;
+                    order: 4;
+                }
+
+                :nth-child(2) ~ * {
+                    order: 5;
+                }
+            }
         }
     }
 }
 
-div.main {
+div.content {
     font-size: 16px;
     text-align: center;
     flex-grow: 1;
@@ -142,6 +169,7 @@ div.main {
 
     @media screen and (min-width: 800px) {
         width: 800px;
+        margin: 0 auto;
     }
 }
 
@@ -159,12 +187,6 @@ main {
         &:first-child, &:last-child {
             margin: 0;
         }
-    }
-
-
-    @media screen and (min-width: 800px) {
-        width: 800px;
-        margin: 0 auto;
     }
 }
 
