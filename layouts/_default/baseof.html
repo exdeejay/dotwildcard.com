@@ -23,10 +23,8 @@
 		<link rel="icon" href="/img/logo_round.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="/img/favicon.png">
 
-		{{ $normalize := resources.Get "css/normalize.css" | minify }}
-		<link rel="stylesheet" type="text/css" href="{{ $normalize.Permalink }}">
-		{{ $style := resources.Get "css/style.scss" | toCSS | minify }}
-		<link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
+		<link rel="stylesheet" type="text/css" href="{{ (resources.Get "css/normalize.css" | minify).Permalink }}">
+		<link rel="stylesheet" type="text/css" href="{{ (resources.Get "css/style.scss" | toCSS | minify).Permalink }}">
 		{{ block "styles" . }}
 		{{ end }}
 	</head>

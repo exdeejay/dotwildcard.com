@@ -1,6 +1,5 @@
 {{ define "styles" }}
-{{ $style := resources.Get "css/contact.scss" | toCSS }}
-<link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
+<link rel="stylesheet" type="text/css" href="{{ (resources.Get "css/contact.scss" | toCSS).Permalink }}">
 {{ end }}
 
 {{ define "main" }}

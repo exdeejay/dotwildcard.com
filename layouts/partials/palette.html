@@ -1,5 +1,4 @@
-{{ $style := resources.Get "css/palette.scss" | toCSS | minify }}
-<link rel="stylesheet" href="{{ $style.Permalink }}">
+<link rel="stylesheet" href="{{ (resources.Get "css/palette.scss" | toCSS | minify).Permalink }}">
 <div id="palette">
 	<div></div>
 	<div></div>

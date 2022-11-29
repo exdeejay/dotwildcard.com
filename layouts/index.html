@@ -3,8 +3,7 @@ dotwildcard
 {{ end }}
 
 {{ define "styles" }}
-{{ $style := resources.Get "css/index.scss" | toCSS | minify }}
-<link rel="stylesheet" href="{{ $style.Permalink }}" />
+<link rel="stylesheet" href="{{ (resources.Get "css/index.scss" | toCSS | minify).Permalink }}" />
 {{ end }}
 
 {{ define "header" }}
@@ -25,6 +24,5 @@ dotwildcard
 <h1 class="terminal">
     <span class="regex" content="{{ .Title }}" alt=".*"></span>
 </h1>
-{{ $js := resources.Get "js/textscroll.js" | minify }}
-<script src="{{ $js.Permalink }}"></script>
+<script src="{{ (resources.Get "js/textscroll.js" | minify).Permalink }}"></script>
 {{ end }}
