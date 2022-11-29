@@ -3,7 +3,7 @@
 {{ end }}
 
 {{ define "main" }}
-<div class="content">
+<main class="list">
 	{{ .Content }}
 	<ul class="list">
     {{ $page := . }}
@@ -15,5 +15,5 @@
         {{ end }}
 	{{ end }}
 	</ul>
-</div>
+</main>
 {{ end }}
