@@ -14,4 +14,4 @@
     </h1>
     {{ end }}
 </header>
-<script src="{{ (resources.Get "js/textscroll.js" | minify).Permalink }}"></script>
+<script src="{{ (resources.Get "ts/textscroll.ts" | js.Build | minify).Permalink }}"></script>

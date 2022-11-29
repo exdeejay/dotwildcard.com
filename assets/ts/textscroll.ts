@@ -1,26 +1,18 @@
-/**
- * @param {*} elem 
- * @returns {string[]}
- */
-function getClasses(elem) {
-	return elem.getAttribute('class').split(' ');
+function getClasses(elem: Element): string[] {
+	return elem.getAttribute('class')!.split(' ');
 }
 
-/**
- * @param {*} elem 
- * @param {string[]} classes 
- */
-function setClasses(elem, classes) {
+function setClasses(elem: Element, classes: string[]) {
 	elem.setAttribute('class', classes.join(' '))
 }
 
-async function sleep(secs) {
+async function sleep(secs: number) {
     return new Promise((resolve) => {
         setTimeout(resolve, secs * 1000);
     });
 }
 
-async function animateType(elem, str, secsPerLetter, color) {
+async function animateType(elem: HTMLElement, str: string, secsPerLetter: number, color?: string) {
 	if (color !== undefined && color !== null) {
 		elem.style.color = color;
 	}
@@ -30,7 +22,7 @@ async function animateType(elem, str, secsPerLetter, color) {
     }
 }
 
-async function animateBackspace(elem, secsPerLetter) {
+async function animateBackspace(elem: HTMLElement, secsPerLetter: number) {
 	let str = elem.innerText;
 	for (let c of str) {
 		elem.innerText = elem.innerText.slice(0, -1);
@@ -45,10 +37,10 @@ document.body.onload = async () => {
 		return;
 	}
 
-	let text = null;
+	let text: string | null;
 	let altText = regex.getAttribute('alt');
 	regex.removeAttribute('alt');
-	let color = null;
+	let color: string | undefined;
 	if (regex.getAttribute('color') != 'no') {
 		color = 'var(--color7)';
 	}
@@ -59,23 +51,23 @@ document.body.onload = async () => {
 		regex.removeAttribute('content');
 
 		await sleep(0.5);
-		await animateType(regex, altText, 0.5, color);
+		await animateType(regex as HTMLElement, altText as string, 0.5, color);
 		await sleep(1);
-		await animateBackspace(regex, 0.25);
+		await animateBackspace(regex as HTMLElement, 0.25);
 		await sleep(0.5);
-		await animateType(regex, text, 0.1);
+		await animateType(regex as HTMLElement, text as string, 0.1);
 	}
 	
 	while (true) {
 		await sleep(10);
-		await animateBackspace(regex, 0.1);
+		await animateBackspace(regex as HTMLElement, 0.1);
 
 		await sleep(1);
-		await animateType(regex, altText, 0.5, color);
+		await animateType(regex as HTMLElement, altText as string, 0.5, color);
 		await sleep(5);
-		await animateBackspace(regex, 0.25);
+		await animateBackspace(regex as HTMLElement, 0.25);
 
 		await sleep(0.5);
-		await animateType(regex, text, 0.1);
+		await animateType(regex as HTMLElement, text as string, 0.1);
 	}
 };

@@ -1,5 +1,5 @@
 {{ define "styles" }}
-<link rel="stylesheet" type="text/css" href="{{ (resources.Get "css/contact.scss" | toCSS).Permalink }}">
+<link rel="stylesheet" type="text/css" href="{{ (resources.Get "css/contact.scss" | toCSS | minify).Permalink }}">
 {{ end }}
 
 {{ define "main" }}

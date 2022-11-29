@@ -23,5 +23,5 @@ dotwildcard
 <h1 class="terminal">
     <span class="regex" content="{{ .Title }}" alt=".*"></span>
 </h1>
-<script src="{{ (resources.Get "js/textscroll.js" | minify).Permalink }}"></script>
+<script src="{{ (resources.Get "ts/textscroll.ts" | js.Build | minify).Permalink }}"></script>
 {{ end }}
