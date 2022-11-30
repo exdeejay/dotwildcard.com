@@ -1,0 +1,49 @@
+div.gallery {
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+    ul.gallery {
+        display: flex;
+        
+        @media screen and (max-width: 800px) {
+            flex-direction: column;
+            li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 14rem;
+                height: 14rem;
+                background-color: #ccc;
+            }    
+        }
+
+        @media screen and (min-width: 800px) {
+            width: 4*14rem + 18rem;
+            flex-direction: row;
+            flex-wrap: wrap;
+            li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 14rem;
+                height: 14rem;
+                background-color: #ccc;
+            }
+    
+            li:nth-child(2n) {
+                background-color: #c8c8c8;
+            }
+    
+            @for $i from 0 to 20 {
+                li:nth-child(#{5*$i + random(5)}) {
+                    width: 18rem;
+                }
+            }
+        }   
+    }
+}

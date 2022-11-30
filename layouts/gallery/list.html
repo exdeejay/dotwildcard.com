@@ -3,17 +3,16 @@
 {{ end }}
 
 {{ define "main" }}
-<main class="list">
-	{{ .Content }}
-	<ul class="list">
-    {{ $page := . }}
-	{{ range os.ReadDir "assets/gallery" }}
-        {{ with resources.Get (printf "gallery/%s" .Name) }}
-        <li>
-            <img src="{{ .RelPermalink }}">
-        </li>
+<div class="gallery">
+    {{ .Content }}
+    <ul class="gallery">
+        {{ range os.ReadDir "assets/gallery" }}
+            {{ with resources.Get (printf "gallery/%s" .Name) }}
+            <li>
+                <img src="{{ .RelPermalink }}">
+            </li>
+            {{ end }}
         {{ end }}
-	{{ end }}
-	</ul>
-</main>
+    </ul>
+</div>
 {{ end }}
