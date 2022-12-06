@@ -12,11 +12,13 @@
     {{ .Content }}
     <ul class="gallery">
         {{ range os.ReadDir "assets/gallery" }}
-        {{ with resources.Get (printf "gallery/%s" .Name) }}
-        <li>
-            <img src="{{ .RelPermalink }}">
-        </li>
-        {{ end }}
+            {{ if (ne .Name ".gitignore") }}
+                {{ with resources.Get (printf "gallery/%s" .Name) }}
+                <li>
+                    <img src="{{ .RelPermalink }}">
+                </li>
+                {{ end }}
+            {{ end }}
         {{ end }}
     </ul>
 </div>

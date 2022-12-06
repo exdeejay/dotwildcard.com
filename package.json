@@ -3,6 +3,7 @@
     "imagesloaded": "^5.0.0"
   },
   "devDependencies": {
+    "@types/imagesloaded": "^4.1.2",
     "typescript": "^4.9.3"
   }
 }
