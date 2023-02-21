@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__next {
+    min-height: 100vh;
+    height: 100%;
+}
+
+#__next {
+    display: flex;
+    flex-direction: column;
+}
+
+html {
+    box-sizing: border-box;
+    @apply text-zinc-200;
+}
+
+body {
+    @apply bg-primary-950;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+img {
+    min-width: 100%;
+}
+
+a {
+    @apply text-primary-400;
+}
+
+main + .footer {
+    @apply bg-primary-800;
+}
+
+main + .footer .footerlink {
+    @apply bg-primary-700;
+}
