@@ -5,10 +5,10 @@ export default function Index() {
   return <>
     <header className="absolute inset-x-0">
         <nav>
-            <ul className="flex justify-center font-mono text-2xl gap-12 py-7">
-                <ListItem content="about" href="/about/" />
-                <ListItem content="contact" href="/contact/" />
-                <ListItem content="posts" href="/posts/" />
+            <ul className="flex font-mono justify-evenly text-xl md:justify-center md:text-2xl md:gap-8 py-7">
+                <ListItem href="/about/">about</ListItem>
+                <ListItem href="/contact/">contact</ListItem>
+                <ListItem href="/posts/">posts</ListItem>
             </ul>
         </nav>
     </header>

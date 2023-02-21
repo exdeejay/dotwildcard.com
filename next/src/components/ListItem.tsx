@@ -1,12 +1,13 @@
 import Link from "next/link";
+import { ReactNode } from "react";
 
 export interface ListItemProps {
-    content: string;
     href: string;
+    children: ReactNode;
 }
 
-export function ListItem({ content, href }: ListItemProps) {
+export function ListItem({ href, children }: ListItemProps) {
     return (
-        <li><Link href={href}>{content}</Link></li>
+        <li className="mx-4"><Link href={href}>{children}</Link></li>
     )
 }
