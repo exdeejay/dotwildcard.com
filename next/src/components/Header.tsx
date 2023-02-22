@@ -1,5 +1,5 @@
 import { AnimatedText } from "@/util/AnimatedText";
-import { sleep } from "@/util/sleep";
+import { sleepWithAbort } from "@/util/sleepWithAbort";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { ListItem } from "./ListItem";
@@ -13,10 +13,15 @@ export function Header({ title }: HeaderProps) {
     let [altColor, setAltColor] = useState(false);
 
     useEffect(() => {
+        setText(title);
+        text = title;
+        setAltColor(false);
+
+        let abortController = new AbortController();
+        let anim = new AnimatedText(text, setText, abortController.signal);
         (async () => {
-            let anim = new AnimatedText(text, setText);
-            
             while (true) {
+                const sleep = sleepWithAbort.bind(null, abortController.signal);
                 await sleep(10000);
                 await anim.clear(100);
 
@@ -31,6 +36,8 @@ export function Header({ title }: HeaderProps) {
                 await anim.type(title, 100);
             }
         })();
+
+        return () => abortController.abort();
     }, []);
 
     return <>

@@ -1,22 +1,25 @@
 import { Footer } from "@/components/Footer";
 import { ListItem } from "@/components/ListItem";
 import { AnimatedText } from "@/util/AnimatedText";
-import { sleep } from "@/util/sleep";
+import { sleepWithAbort } from "@/util/sleepWithAbort";
 import { useEffect, useState } from "react";
-
-
 
 export default function Index() {
   let [text, setText] = useState('');
   let [altColor, setAltColor] = useState(true);
 
   useEffect(() => {
+    setText('');
+    text = '';
+    setAltColor(true);
+    let abortController = new AbortController();
+    let anim = new AnimatedText(text, setText, abortController.signal);
     (async () => {
-      let anim = new AnimatedText(text, setText);
+      const sleep = sleepWithAbort.bind(null, abortController.signal);
       await sleep(500);
       await anim.type('.*', 500);
       await sleep(1000);
-      await anim.clear(250);
+      await anim.clear(250)
       await sleep(500);
       setAltColor(false);
       await anim.type('dotwildcard', 100);
@@ -26,7 +29,7 @@ export default function Index() {
         await anim.clear(100);
 
         await sleep(1000);
-        setAltColor(true);
+        setAltColor(true)
         await anim.type('.*', 500);
         await sleep(5000);
         await anim.clear(250);
@@ -35,7 +38,9 @@ export default function Index() {
         setAltColor(false);
         await anim.type('dotwildcard', 100);
       }
-      })();
+    })();
+
+    return () => abortController.abort();
   }, []);
 
   return <>
