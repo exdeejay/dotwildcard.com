@@ -1,7 +1,9 @@
 import { Page } from "@/components/Page";
 import { GetStaticPaths, GetStaticProps } from "next";
+import dynamic from "next/dynamic";
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { ReactNode } from "react";
 
 interface PostParams {
     [key: string]: string;
@@ -10,23 +12,21 @@ interface PostParams {
 
 interface PostProps {
     title: string;
-    contents: string;
 }
 
-export default function Post({ title, contents }: PostProps) {
+export default function Post({ title }: PostProps) {
+    const Component = dynamic(() => import(`@/posts/${title}.mdx`));
     return (
         <Page title={title}>
-            {contents}
+            <Component />
         </Page>
     )
 }
 
 export const getStaticProps: GetStaticProps<PostProps, PostParams> = async ({ params }) => {
-    
     return {
         props: {
-            title: params!.name,
-            contents: await fs.readFile(path.join(process.cwd(), 'src/posts', `${params!.name}.mdx`), 'utf-8')
+            title: params!.name
         }
     };
 }

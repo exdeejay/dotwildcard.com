@@ -15,7 +15,7 @@ export default function Posts({ posts }: PostsProps) {
         <Header title={'posts'} />
         <ul className="grow w-full md:w-[theme(screens.md)] mx-auto">
             {posts.map(post => (
-                <Link href={`/posts/${post}`}>
+                <Link key={post} href={`/posts/${post}`}>
                     <li className="text-2xl bg-primary-800 p-8 my-8 text-primary-300">
                         <h2 className="font-bold font-mono">{post}</h2>
                     </li>
