@@ -46,7 +46,7 @@ export function Header({ title }: HeaderProps) {
         </Head>
         <header className="inset-x-0 font-mono">
             <nav>
-                <ul className="flex justify-between text-xl md:justify-center md:text-2xl py-7">
+                <ul className="flex justify-evenly text-xl sm:justify-center sm:text-2xl py-7">
                     <ListItem href="/">home</ListItem>
                     <ListItem href="/about/">about</ListItem>
                     <ListItem href="/contact/">contact</ListItem>
