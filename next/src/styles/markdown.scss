@@ -1,6 +1,6 @@
 main {
     h1 {
-        @apply text-2xl font-bold mb-8;
+        @apply text-2xl font-bold mb-4;
     }
 
     h2 {
@@ -9,5 +9,17 @@ main {
 
     h3 {
         @apply text-lg mb-4
+    }
+
+    p > code {
+        @apply text-sm bg-gray-700 p-0.5 rounded font-['Courier_New'] shadow
+    }
+
+    pre[class^="language-"] {
+        @apply bg-primary-900 rounded shadow-md my-4;
+
+        code {
+            @apply text-sm
+        }
     }
 }
