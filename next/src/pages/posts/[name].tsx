@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps<PostProps, PostParams> = async ({ pa
 export const getStaticPaths: GetStaticPaths<PostParams> = async () => {
     let fpath = path.join(process.cwd(), 'src/posts');
     return {
-        paths: (await fs.readdir(fpath)).map(name => ({
+        paths: (await fs.readdir(fpath)).filter(name => name.endsWith('.mdx')).map(name => ({
             params: {
                 name: name.replace('.mdx', '')
             }

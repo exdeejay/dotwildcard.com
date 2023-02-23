@@ -29,7 +29,7 @@ export default function Posts({ posts }: PostsProps) {
 export const getStaticProps: GetStaticProps = async () => {
     return {
         props: {
-            posts: (await fs.readdir(path.join(process.cwd(), 'src/posts'))).map(name => name.replace('.mdx', ''))
+            posts: (await fs.readdir(path.join(process.cwd(), 'src/posts'))).filter(name => name.endsWith('.mdx')).map(name => name.replace('.mdx', ''))
         }
     }
 }
