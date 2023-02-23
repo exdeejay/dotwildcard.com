@@ -1,13 +1,14 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { Page } from "@/components/Page";
 import { GetStaticProps } from "next";
+import { serialize } from 'next-mdx-remote/serialize';
 import Link from "next/link";
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { PostFrontmatter } from "./posts/[name]";
 
 interface PostsProps {
-    posts: [string];
+    posts: PostFrontmatter[];
 }
 
 export default function Posts({ posts }: PostsProps) {
@@ -15,9 +16,10 @@ export default function Posts({ posts }: PostsProps) {
         <Header title={'posts'} />
         <ul className="grow w-full md:w-[theme(screens.md)] mx-auto">
             {posts.map(post => (
-                <Link key={post} href={`/posts/${post}`}>
-                    <li className="text-2xl bg-primary-800 p-8 my-8 text-primary-300">
-                        <h2 className="font-bold font-mono">{post}</h2>
+                <Link key={post.slug} href={`/posts/${post.slug}`}>
+                    <li className="bg-primary-800 p-8 my-8">
+                        <h2 className="text-2xl text-primary-300 font-bold font-mono mb-2">{post.title}</h2>
+                        <p className="text-zinc-200">{post.description}</p>
                     </li>
                 </Link>
             ))}
@@ -26,10 +28,27 @@ export default function Posts({ posts }: PostsProps) {
     </>;
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<PostsProps> = async () => {
+    let postFiles = (await fs.readdir(path.join(process.cwd(), 'src/posts'))).filter(name => name.endsWith('.mdx'));
     return {
         props: {
-            posts: (await fs.readdir(path.join(process.cwd(), 'src/posts'))).filter(name => name.endsWith('.mdx')).map(name => name.replace('.mdx', ''))
+            posts: await Promise.all(postFiles.map(async name => {
+                const source = await serialize(
+                    await fs.readFile(
+                        path.join(process.cwd(), 'src/posts', name),
+                        'utf-8'
+                    ),
+                    {
+                        parseFrontmatter: true,
+                    }
+                );
+                const frontmatter = source.frontmatter as PostFrontmatter;
+                
+                return {
+                    ...frontmatter,
+                    slug: frontmatter.slug ?? name.replace('.mdx', ''),
+                } as PostFrontmatter;
+            }))
         }
     }
 }

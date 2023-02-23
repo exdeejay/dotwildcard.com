@@ -15,12 +15,13 @@ main {
         @apply text-sm bg-gray-700 p-0.5 rounded font-['Courier_New'] shadow
     }
 
-    pre[class^="language-"] {
-        @apply bg-primary-900 rounded shadow-md my-4;
+    pre {
+        @apply bg-primary-900 rounded shadow-md mx-0 my-4 p-4 #{!important};
 
         code {
-            @apply text-sm;
-            background: none;
+            @apply text-sm text-zinc-300;
+            background: none !important;
+            font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
         }
     }
 }
