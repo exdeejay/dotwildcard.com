@@ -1,11 +1,9 @@
-import 'prism-themes/themes/prism-vsc-dark-plus.css'
 import '@/styles/globals.css'
 import '@/styles/markdown.scss'
+import 'prism-themes/themes/prism-one-dark.css'
 
 import type { AppProps } from 'next/app'
-import { Footer } from '@/components/Footer'
 import Head from 'next/head'
-import { Header } from '@/components/Header'
 
 export default function App({ Component, pageProps }: AppProps) {
   return <>

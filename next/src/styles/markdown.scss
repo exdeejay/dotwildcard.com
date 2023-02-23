@@ -19,7 +19,8 @@ main {
         @apply bg-primary-900 rounded shadow-md my-4;
 
         code {
-            @apply text-sm
+            @apply text-sm;
+            background: none;
         }
     }
 }
