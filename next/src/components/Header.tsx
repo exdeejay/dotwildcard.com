@@ -28,7 +28,7 @@ export function Header({ title }: HeaderProps) {
                 await sleep(1000);
                 setAltColor(true);
                 await anim.type('.*', 500);
-                await sleep(5000);
+                await sleep(2000);
                 await anim.clear(250);
 
                 await sleep(500);
@@ -53,8 +53,8 @@ export function Header({ title }: HeaderProps) {
                     <ListItem href="/posts/">posts</ListItem>
                 </ul>
             </nav>
-            <h1 className="w-full text-4xl font-bold p-4 bg-primary-700 text-center">
-                <span className="text-primary-200">/</span><span className={altColor ? 'text-primary-100' : ''}>{text}</span><span className="text-primary-200">/</span>
+            <h1 className="w-full text-4xl font-bold p-4 bg-primary-700 text-center tracking-tight">
+                <span className="text-primary-300">/</span><span className={altColor ? 'text-primary-100' : ''}>{text}</span><span className="text-primary-300">/</span>
             </h1>
         </header>
     </>;
