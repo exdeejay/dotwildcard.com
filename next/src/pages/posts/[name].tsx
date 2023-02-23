@@ -13,10 +13,11 @@ interface PostParams {
 }
 
 export interface PostFrontmatter {
-    [key: string]: string | undefined;
+    [key: string]: string | Date | undefined;
     title: string;
-    description: string;
     slug?: string;
+    publish?: string;
+    description: string;
 }
 
 declare type MDXPost = MDXRemoteSerializeResult<Record<string, unknown>, PostFrontmatter>;

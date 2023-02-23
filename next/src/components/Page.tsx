@@ -9,8 +9,8 @@ export interface PageProps {
 
 export function Page({ title, children }: PageProps) {
     return <>
-        <Header title={title} />
-        <main className="grow w-full md:w-[theme(screens.md)] mx-auto mt-6 p-8 bg-primary-800">
+        <Header title={title} pageTitle={`${title} :: dotwildcard`} />
+        <main className="grow w-full md:w-[theme(screens.md)] mx-auto mt-6 p-2 md:p-8 bg-primary-800">
             {children}
         </main>
         <Footer />

@@ -19,6 +19,7 @@ export default function Posts({ posts }: PostsProps) {
                 <Link key={post.slug} href={`/posts/${post.slug}`}>
                     <li className="bg-primary-800 p-8 my-8">
                         <h2 className="text-2xl text-primary-300 font-bold font-mono mb-2">{post.title}</h2>
+                        <h3>{post.publish}</h3>
                         <p className="text-zinc-200">{post.description}</p>
                     </li>
                 </Link>
@@ -42,11 +43,12 @@ export const getStaticProps: GetStaticProps<PostsProps> = async () => {
                         parseFrontmatter: true,
                     }
                 );
-                const frontmatter = source.frontmatter as PostFrontmatter;
+                const frontmatter = source.frontmatter! as Record<string, string | Date>;
                 
                 return {
                     ...frontmatter,
                     slug: frontmatter.slug ?? name.replace('.mdx', ''),
+                    publish: frontmatter.publish?.toDateString() ?? '',
                 } as PostFrontmatter;
             }))
         }

@@ -19,7 +19,7 @@ main {
         @apply bg-primary-900 rounded shadow-md mx-0 my-4 p-4 #{!important};
 
         code {
-            @apply text-sm text-zinc-300;
+            @apply text-xs md:text-sm text-zinc-300;
             background: none !important;
             font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
         }

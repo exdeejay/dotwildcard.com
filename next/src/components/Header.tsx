@@ -6,9 +6,10 @@ import { ListItem } from "./ListItem";
 
 export interface HeaderProps {
     title: string;
+    pageTitle?: string;
 }
 
-export function Header({ title }: HeaderProps) {
+export function Header({ title, pageTitle = title }: HeaderProps) {
     let [text, setText] = useState(title);
     let [altColor, setAltColor] = useState(false);
 
@@ -42,7 +43,7 @@ export function Header({ title }: HeaderProps) {
 
     return <>
         <Head>
-            <title>{title}</title>
+            <title>{pageTitle}</title>
         </Head>
         <header className="inset-x-0 font-mono">
             <nav>
