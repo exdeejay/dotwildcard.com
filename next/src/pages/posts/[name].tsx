@@ -1,66 +1,47 @@
-import { Page } from "@/components/Page";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import rehypePrism from '@mapbox/rehype-prism';
-
+import { Page } from '@/components/Page';
+import { listPosts, PostFrontmatter, readPost } from '@/util/post';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 interface PostParams {
-    [key: string]: string;
-    name: string;
+  [key: string]: string;
+  name: string;
 }
 
-export interface PostFrontmatter {
-    [key: string]: string | Date | undefined;
-    title: string;
-    slug?: string;
-    publish?: string;
-    description: string;
-}
-
-declare type MDXPost = MDXRemoteSerializeResult<Record<string, unknown>, PostFrontmatter>;
 export interface PostProps {
-    source: MDXPost;
+  source: string;
+  frontmatter: PostFrontmatter;
 }
 
-export default function Post({ source }: PostProps) {
-    return (
-        <Page title={source.frontmatter!.title}>
-            <MDXRemote {...source as MDXRemoteSerializeResult} />
-        </Page>
-    )
+export default function Post({ source, frontmatter }: PostProps) {
+  return <Page title={frontmatter.title} dangerouslySetInnerHtml={source}>
+
+  </Page>;
 }
 
-export const getStaticProps: GetStaticProps<PostProps, PostParams> = async ({ params }) => {
-    const source = await serialize(
-        await fs.readFile(
-            path.join(process.cwd(), 'src/posts', `${params!.name}.mdx`),
-            'utf-8'
-        ),
-        {
-            mdxOptions: {
-                rehypePlugins: [rehypePrism]
-            },
-            parseFrontmatter: true
-        }
-    ) as MDXPost;
-    return {
-        props: {
-            source
-        }
-    };
-}
+export const getStaticProps: GetStaticProps<PostProps, PostParams> = async ({
+  params,
+}) => {
+  const { source, frontmatter } = await readPost(`${params!.name}.md`);
+
+  return {
+    props: {
+      source,
+      frontmatter,
+    },
+  };
+};
 
 export const getStaticPaths: GetStaticPaths<PostParams> = async () => {
-    let fpath = path.join(process.cwd(), 'src/posts');
-    return {
-        paths: (await fs.readdir(fpath)).filter(name => name.endsWith('.mdx')).map(name => ({
-            params: {
-                name: name.replace('.mdx', '')
-            }
-        })),
-        fallback: false,
-    }
-}
+  const posts = await listPosts();
+  return {
+    paths: await Promise.all(posts.map(async (name) => {
+      const { frontmatter } = await readPost(name);
+      return {
+        params: {
+          name: frontmatter.slug ?? name.slice(0, name.lastIndexOf('.')),
+        },
+      };
+    })),
+    fallback: false,
+  };
+};
