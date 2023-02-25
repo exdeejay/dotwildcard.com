@@ -47,8 +47,6 @@ export default function Index() {
     <header className="absolute inset-x-0">
         <nav>
             <ul className="flex font-mono justify-evenly text-xl sm:justify-center sm:text-2xl md:gap-8 py-7">
-                <ListItem href="/about/">about</ListItem>
-                <ListItem href="/contact/">contact</ListItem>
                 <ListItem href="/posts/">posts</ListItem>
             </ul>
         </nav>

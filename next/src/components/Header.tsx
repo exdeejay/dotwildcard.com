@@ -49,8 +49,6 @@ export function Header({ title, pageTitle = title }: HeaderProps) {
             <nav>
                 <ul className="flex justify-evenly text-xl sm:justify-center sm:text-2xl py-7">
                     <ListItem href="/">home</ListItem>
-                    <ListItem href="/about/">about</ListItem>
-                    <ListItem href="/contact/">contact</ListItem>
                     <ListItem href="/posts/">posts</ListItem>
                 </ul>
             </nav>
