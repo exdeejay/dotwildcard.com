@@ -23,7 +23,7 @@ export default function remarkMdxDefaultLayout() {
       makeEsmNode("import { Page } from '@/components/Page'"),
       makeEsmNode(`
             export function getStaticProps() {
-              if (${file.data.matter.draft} === true) {
+              if (process.env.NODE_ENV !== 'development' && ${file.data.matter.draft} === true) {
                 return {
                   notFound: true
                 }

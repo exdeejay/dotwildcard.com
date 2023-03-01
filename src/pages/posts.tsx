@@ -19,7 +19,8 @@ export default function Posts({ posts }: PostsProps) {
                         {post.date && 
                             <h3 className="text-teal-700 font-mono mb-2 tracking-tight">{
                                 new Date(post.date).toLocaleDateString(undefined, {
-                                    dateStyle: 'medium'
+                                    dateStyle: 'medium',
+                                    timeZone: 'UTC'
                                 })
                             }</h3>
                         }
@@ -34,15 +35,19 @@ export default function Posts({ posts }: PostsProps) {
 
 export const getStaticProps: GetStaticProps<PostsProps> = async () => {
     let postFiles = await listPosts();
+    let posts = await Promise.all(postFiles.map(async name => {
+        const frontmatter = await readPostFrontmatter(name);
+        return {
+            ...frontmatter,
+            slug: frontmatter.slug ?? name.replace(/.mdx?/, '')
+        };
+    }));
+    if (process.env.NODE_ENV !== 'development') {
+        posts = posts.filter(p => !p.draft);
+    }
     return {
         props: {
-            posts: (await Promise.all(postFiles.map(async name => {
-                const frontmatter = await readPostFrontmatter(name);
-                return {
-                    ...frontmatter,
-                    slug: frontmatter.slug ?? name.replace(/.mdx?/, '')
-                };
-            }))).filter(f => !f.draft)
+            posts
         }
     }
 }
