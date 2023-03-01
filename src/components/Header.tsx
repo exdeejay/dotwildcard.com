@@ -9,7 +9,7 @@ export interface HeaderProps {
     pageTitle?: string;
 }
 
-export function Header({ title, pageTitle = title }: HeaderProps) {
+export function Header({ title }: HeaderProps) {
     let [text, setText] = useState(title);
     let [altColor, setAltColor] = useState(false);
 
@@ -43,7 +43,7 @@ export function Header({ title, pageTitle = title }: HeaderProps) {
 
     return <>
         <Head>
-            <title>{pageTitle}</title>
+            <title>{title} :: dotwildcard</title>
         </Head>
         <header className="inset-x-0 font-mono">
             <nav>
