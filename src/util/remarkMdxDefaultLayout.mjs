@@ -22,6 +22,17 @@ export default function remarkMdxDefaultLayout() {
     tree.children.unshift(
       makeEsmNode("import { Page } from '@/components/Page'"),
       makeEsmNode(`
+            export function getStaticProps() {
+              if (${file.data.matter.draft} === true) {
+                return {
+                  notFound: true
+                }
+              }
+              return {
+                props: {}
+              };
+            }
+
             export default function ({ children }) {
                 return <Page title="${file.data.matter.title}">{children}</Page>;
             }

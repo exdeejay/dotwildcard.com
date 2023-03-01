@@ -1,36 +1,29 @@
-import rehypePrism from '@mapbox/rehype-prism';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { ReactNode } from 'react';
-import rehypeStringify from 'rehype-stringify/lib';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
+import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
 import { matter } from 'vfile-matter';
 
 export interface PostFrontmatter {
   title: string;
   slug?: string;
-  publish?: string;
+  date?: string;
   description: string;
+  draft: boolean;
 }
 
-export interface SerializedPost {
-  source: string;
-  frontmatter: PostFrontmatter;
-}
-
-const EXTENSIONS = ['.md'];
+const EXTENSIONS = ['.md', '.mdx'];
 
 export async function listPosts(): Promise<string[]> {
-  return (await fs.readdir(path.join(process.cwd(), 'src/posts'))).filter(
+  return (await fs.readdir(path.join(process.cwd(), 'src/pages/posts'))).filter(
     (name) => EXTENSIONS.some((ext) => name.endsWith(ext))
   );
 }
 
-export async function readPost(name: string): Promise<SerializedPost> {
-  const source = await fs.readFile(path.join(process.cwd(), 'src/posts', name));
+export async function readPostFrontmatter(name: string): Promise<PostFrontmatter> {
+  const source = await fs.readFile(path.join(process.cwd(), 'src/pages/posts', name));
   const file = await unified()
     .use(remarkParse)
     .use(remarkFrontmatter)
@@ -39,12 +32,6 @@ export async function readPost(name: string): Promise<SerializedPost> {
         matter(file);
       }
     })
-    .use(remarkRehype)
-    .use(rehypePrism)
-    .use(rehypeStringify)
-    .process(source);
-  return {
-    source: String(file),
-    frontmatter: file.data.matter as PostFrontmatter,
-  };
+    .use(remarkStringify).process(source);
+  return file.data.matter as PostFrontmatter;
 }
